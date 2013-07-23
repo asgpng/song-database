@@ -2,14 +2,13 @@
 
 class Song extends CI_Model {
 
-  var $title              = '';
-  var $author_lyrics      = '';
-  var $author_music       = '';
-  var $copyright_producer = '';
-  var $copyright_year     = '';
-  var $ccli               = '';
-  var $standard_key       = '';
-  var $text               = '';
+  var $title           = '';
+  var $author          = '';
+  var $producer        = '';
+  var $year            = '';
+  var $ccli            = '';
+  var $standard_key    = '';
+  var $text            = '';
 
   function __construct()
   {
@@ -20,13 +19,18 @@ class Song extends CI_Model {
   function get_song($id)
   {
     $query = $this->db->query("SELECT * FROM songs WHERE id = '$id';");
-    $row = $query->row();
-    return $row;
+    if ($query->num_rows() == 0) {
+      return -1;
+    }
+    else {
+      $row = $query->row();
+      return $row;
+    }
   }
 
   function get_header($id) {
     $song = $this->song->get_song($id);
-    return $song->title . ' by ' . $song->author_lyrics . ', ' . $song->copyright_producer . ' &copy; ' . $song->copyright_year . ' CCLI # ' . $song->ccli;
+    return '<i>' . $song->title . '</i> by ' . $song->author . ', ' . ' &copy; ' . $song->year . ' ' . $song->producer . ' CCLI # ' . $song->ccli;
   }
 
   function delete_song($id)
@@ -49,9 +53,14 @@ class Song extends CI_Model {
     $this->db->query("UPDATE songs SET $entry='$content' where id = '$id';");
   }
 
-  function insert_user($netID, $user_type) {
-    $this->netID     = $netID;
-    $this->user_type = $user_type;
+  function insert_song($title, $author, $producer, $date, $ccli, $text) {
+    $this->title     = $title;
+    $this->author    = $author;
+    $this->producer  = $producer;
+    $this->year      = $date;
+    $this->ccli      = $ccli;
+    $this->text      = $text;
+    $this->db->insert('songs', $this);
   }
 
   function insert_entry()

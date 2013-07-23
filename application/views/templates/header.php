@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Adam Gallagher">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/stylesheets/bootstrap.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/css/bootstrap.css')?>">
     <title><?php echo $title ?> - Song Database</title>
 
     <script src="/songs/codemirror/lib/codemirror.js"></script>
-    <script src="/songs/codemirror/lib/addon/edit/matchbrackets.js"></script>
+    <script src="/songs/codemirror/addon/edit/matchbrackets.js"></script>
     <script src="/songs/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="/songs/codemirror/mode/xml/xml.js"></script>
     <script src="/songs/codemirror/mode/javascript/javascript.js"></script>
@@ -51,9 +51,13 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Songs</li>
-              <li><?php echo anchor('songs', 'View Songs'); ?></li>
-              <li><?php echo anchor('songs/edit', 'Edit Songs'); ?></li>
-              <li><?php echo anchor('songs/codemirror', 'Code Mirror'); ?></li>
+              <li><?php echo anchor('music', 'View Songs'); ?></li>
+              <li><?php echo anchor('music/edit', 'Edit Songs'); ?></li>
+              <li><?php echo anchor('music/codemirror', 'Code Mirror'); ?></li>
+              <li><?php echo anchor('files/upload', 'Upload'); ?></li>
+              <li class="nav-header">Sets</li>
+              <li><?php echo anchor('sets', 'View Sets'); ?></li>
+              <li><?php echo anchor('sets/choose_songs', 'New Set'); ?></li>
             </ul>
           </div>
         </div>

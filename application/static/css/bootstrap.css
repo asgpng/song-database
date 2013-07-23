@@ -6204,3 +6204,13 @@ body {
 .table label {
     font-weight: bold;
 }
+
+#current_set {
+    width:300px;
+    float: left;
+}
+
+#songs {
+    /* width:600px; */
+    float: left;
+}

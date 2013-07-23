@@ -50,7 +50,8 @@ $route['login'] = 'defaults/login';
 $route['logout'] = 'defaults/logout';
 $route['test_login'] = 'defaults/test_login';
 $route['test_logout'] = 'defaults/test_logout';
-$route['songs'] = 'songs';
+$route['music'] = 'music';
+$route['sets'] = 'sets';
 
 
 /* End of file routes.php */

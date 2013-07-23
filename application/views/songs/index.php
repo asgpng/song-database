@@ -1,8 +1,7 @@
 <table class="table table-striped">
   <tr>
     <th>Title</th>
-    <th>Lyrics Author</th>
-    <th>Music Author</th>
+    <th>Author</th>
     <th>Producer</th>
     <th>Year</th>
     <th>CCLI</th>
@@ -11,19 +10,16 @@
   <?php foreach ($query->result() as $row): ?>
   <tr>
     <td>
-      <?php echo $row->title; ?>
+      <?php echo anchor('music/codemirror/'.$row->id, $row->title); ?>
     </td>
     <td>
-      <?php echo $row->author_lyrics; ?>
+      <?php echo $row->author; ?>
     </td>
     <td>
-      <?php echo $row->author_music; ?>
+      <?php echo $row->producer; ?>
     </td>
     <td>
-      <?php echo $row->copyright_producer; ?>
-    </td>
-    <td>
-      <?php echo $row->copyright_year; ?>
+      <?php echo $row->year; ?>
     </td>
     <td>
       <?php echo $row->ccli; ?>
@@ -31,6 +27,6 @@
     <td>
       <?php echo $row->standard_key; ?>
     </td>
-    <?php endforeach; ?>
   </tr>
+  <?php endforeach; ?>
 </table>
