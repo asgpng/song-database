@@ -40,10 +40,10 @@ class Music extends CI_Controller {
     $data['header'] = $this->song->get_header($id);
     $data['song'] = $this->song->get_song($id);
     if ($this->input->post('code') != '') {
-      $code = $this->input->post('code');
+      $code = trim($this->input->post('code'), "\xef\xbb\xbf\t\n\0\x0B ");
       /* echo $code; */
       $data['content'] = $code;
-      $this->song->update_individual($id, 'text', safe($code));
+      $this->song->update_individual($id, 'text', safe($code), false);
     }
     $this->load->view('templates/header', $data);
     $this->load->view('songs/cm_editor', $data);
@@ -71,26 +71,49 @@ class Music extends CI_Controller {
     echo $theData;
   }
 
-  public function add_song() {
-    $myFile = "./upload/test.txt";
+  public function insert_song() {
+    $title = $this->input->post('title');
+    $author = $this->input->post('author');
+    $producer = $this->input->post('producer');
+    $year = $this->input->post('year');
+    $ccli = $this->input->post('ccli');
+    $standard_key = $this->input->post('standard_key');
+    $this->song->insert_song($title, $author, $producer, $year, $ccli, $standard_key);
+    redirect('music', 'refresh');
+  }
+
+  public function delete_songs() {
+    $data['title'] = 'View Songs';
+    $data['query'] = $this->song->get_songs();
+    $this->load->view('templates/header', $data);
+    $this->load->view('songs/delete', $data);
+    $this->load->view('templates/footer', $data);
+  }
+
+  public function delete($song_id) {
+    $this->song->delete_song($song_id);
+    redirect('music/delete_songs');
+  }
+
+  public function add_song($myFile) {
+    $this->load->helper('file');
+    $myFile = './upload/' . $myFile;
     exec('./python/get_title.py ' . $myFile, $title);
     exec('./python/get_author.py ' . $myFile, $author);
     exec('./python/get_producer.py ' . $myFile, $producer);
     exec('./python/get_date.py ' . $myFile, $date);
     exec('./python/get_ccli.py ' . $myFile, $ccli);
-    exec('./python/get_text.py ' . $myFile, $text);
+    /* exec('./python/get_text.py ' . $myFile, $text); */
+    $text = read_file($myFile);
     echo $title[0];
     echo $author[0];
     echo $producer[0];
     echo $date[0];
     echo $ccli[0];
-    foreach ($text as $line) {
-      echo $line;
-      echo '<br>';
+    if (!$this->song->song_exists($title[0], $author[0])) {
+      $this->song->insert_song($title[0], $author[0], $producer[0], $date[0], $ccli[0], $text, '');
     }
-    /* $this->song->insert_song($title[0], $author[0], $producer[0], $date[0], $ccli[0], $text); */
-    echo 'success';
-    /* redirect('music'); */
+    redirect('music');
   }
 
   public function test() {

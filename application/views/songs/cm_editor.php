@@ -48,7 +48,7 @@
 </form>
 
 <!-- <form action="<?php echo site_url('music/codemirror'); ?>" method="POST" > -->
-<form action="<?php echo build_uri(array('id'=>$song->id), 'music/codemirror'); ?>" method="POST" >
+<form action="<?php echo site_url('music/codemirror/' . $song->id); ?>" method="POST" >
   <textarea id="code" name="code">
 <?php echo $content ?>
   </textarea>

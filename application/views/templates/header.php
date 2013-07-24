@@ -17,6 +17,8 @@
     <script src="/songs/codemirror/mode/css/css.js"></script>
     <script src="/songs/codemirror/mode/clike/clike.js"></script>
     <script src="/songs/codemirror/mode/php/php.js"></script>
+    <script src="/songs/application/static/js/jquery-2.0.3.min.js"></script>
+    <script src="/songs/application/static/js/bootstrap.js"></script>
     <style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
     <!-- <link rel="stylesheet" href="/songs/codemirror/doc/docs.css"> -->
     <link rel="stylesheet" href="/songs/codemirror/lib/codemirror.css">
@@ -37,28 +39,38 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><?php echo anchor('/', 'Home'); ?></li>
-              <li><?php echo anchor('about', 'About'); ?></li>
-              <li><?php echo anchor('contact', 'Contact'); ?></li>
             </ul>
           </div>
+          <ul class="nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Songs<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><?php echo anchor('music', 'View Songs'); ?></li>
+                <li><?php echo anchor('music/edit', 'Edit Songs'); ?></li>
+                <li><?php echo anchor('files/upload', 'Upload'); ?></li>
+                <li><?php echo anchor('files/view_files', 'View Uploads'); ?></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Sets<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><?php echo anchor('sets', 'View Sets'); ?></li>
+                <li><?php echo anchor('sets/choose_songs', 'New Set'); ?></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li><?php echo anchor('about', 'About'); ?></li>
+            <li><?php echo anchor('contact', 'Contact'); ?></li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Songs</li>
-              <li><?php echo anchor('music', 'View Songs'); ?></li>
-              <li><?php echo anchor('music/edit', 'Edit Songs'); ?></li>
-              <li><?php echo anchor('music/codemirror', 'Code Mirror'); ?></li>
-              <li><?php echo anchor('files/upload', 'Upload'); ?></li>
-              <li class="nav-header">Sets</li>
-              <li><?php echo anchor('sets', 'View Sets'); ?></li>
-              <li><?php echo anchor('sets/choose_songs', 'New Set'); ?></li>
-            </ul>
-          </div>
-        </div>
-        <div class="span9">
+    <div class="container">

@@ -10,6 +10,7 @@
  <?php foreach ($upload_data as $item => $value):?>
 <li><?php echo $item;?>: <?php echo $value;?></li>
  <?php endforeach; ?>
+<?php echo $upload_data['file_name'] ?>
 </ul>
 
 <p><?php echo anchor('files/upload', 'Upload Another File!'); ?></p>

@@ -7,7 +7,7 @@ class Files extends CI_Controller {
     parent::__construct();
     //function inside autoloaded helper, check if user is logged in, if not redirects to login page
     is_logged_in();
-    $this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url', 'file'));
   }
 
   public function upload() {
@@ -35,22 +35,35 @@ class Files extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('files/upload', $error);
         $this->load->view('templates/footer', $data);
-        echo 'error';
       }
     else
       {
         $data = array('upload_data' => $this->upload->data());
-        $this->load->view('templates/header', $data);
-        $this->load->view('files/upload_success', $data);
-        $this->load->view('templates/footer', $data);
+        redirect('music/add_song/'.$this->upload->data()['file_name']);
+        /* $this->load->view('templates/header', $data); */
+        /* $this->load->view('files/upload_success', $data); */
+        /* $this->load->view('templates/footer', $data); */
       }
   }
 
   public function view_files() {
+
     /* $this->twiggy->title('View Files')->display('files/view/list'); */
     $data['title'] = 'View Files';
+    $data['files'] = get_filenames('./upload');
     $this->load->view('templates/header', $data);
     $this->load->view('files/view/list', $data);
     $this->load->view('templates/footer', $data);
+  }
+
+  public function view($file) {
+    $data['file'] = read_file('./upload/' . $file);
+    $this->load->view('templates/header', $data);
+    $this->load->view('files/view/single', $data);
+    $this->load->view('templates/footer', $data);
+  }
+
+  public function test() {
+    echo base_url('upload');
   }
 }
