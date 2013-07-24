@@ -6319,3 +6319,6 @@ button.close {
     display: inline;
     padding: 0 2px;
 }
+.container-fluid img {
+    padding: 5px;
+}

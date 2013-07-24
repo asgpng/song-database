@@ -1,0 +1,6 @@
+TODO:
+- filter song list with links
+- sort song list with links
+- search feature
+- export lyrics, chords, sheet music
+- implement transpose

@@ -31,7 +31,6 @@
     </tr>
     <?php endforeach; ?>
     <tr>
-
       <td>
         <input type="text" name="title" placeholder="Title" class="input-medium" />
       </td>

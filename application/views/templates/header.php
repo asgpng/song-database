@@ -69,6 +69,9 @@
             <li><?php echo anchor('about', 'About'); ?></li>
             <li><?php echo anchor('contact', 'Contact'); ?></li>
           </ul>
+          <form class="navbar-search pull-right">
+            <input type="text" class="search-query" placeholder="Search">
+          </form>
         </div>
       </div>
     </div>

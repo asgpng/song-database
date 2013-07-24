@@ -1,12 +1,12 @@
 <form action="<?php echo site_url('sets/update_set'); ?>" class="form-inline" method="POST">
   <label for="date" class="control-label">Date</label>
-  <input type="text" name="date" value="<?php echo $set->date; ?>" />
+  <input type="text" name="date" onchange="this.form.submit()" value="<?php echo $set->date; ?>" />
   <label for="event" class="control-label">Event</label>
-  <input type="text" name="event" value="<?php echo $set->event; ?>" />
+  <input type="text" name="event" onchange="this.form.submit()" value="<?php echo $set->event; ?>" />
   <label for="theme" class="control-label">Theme</label>
-  <input type="text" name="theme" value="<?php echo $set->theme; ?>" />
+  <input type="text" name="theme" onchange="this.form.submit()" value="<?php echo $set->theme; ?>" />
   <input type="hidden" name="id" value="<?php echo $set->id; ?>" >
-  <input type="submit" value="Update Set">
+  <!-- <input type="submit" value="Update Set"> -->
 </form>
 <div id="current_set">
   <form>
