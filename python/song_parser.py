@@ -28,6 +28,11 @@ def transpose(chord, steps):
     else:
         return chords[index+steps]
 
+def is_date(item):
+    if re.search('^[1|2]\d{3}$', item) != None:
+        return True
+    return False
+
 def is_chord(line):
     """Check if line contains chords.
     Returns : boolean
@@ -75,7 +80,7 @@ def is_xml_line(line):
     """Check if line is a complete xml line i.e. <foo>bar</foo>
     Returns : boolean
     """
-    print line
+    # print line
     if '<' in line and '>' in line and '/' in line:
         return True
     return False
@@ -117,7 +122,7 @@ def get_heading(line):
     Returns : heading (string), or None
     """
     head = re.split('[\d\W]', line.lower())
-    print head, "head"
+    # print head, "head"
     # head = split(line.lower())
     # parse [verse] number, if existing:
     number = ""
@@ -125,6 +130,8 @@ def get_heading(line):
     for n in numbers:
         if n != "":
             number = n
+    if 'intro' in head:
+        return 'intro'
     if 'verse' in head:
         return 'verse ' + str(number)
     if 'pre chorus' in line.lower():
@@ -139,8 +146,6 @@ def get_heading(line):
         return 'refrain'
     if 'order' in head:
         return 'order'
-    if 'intro' in head:
-        return 'intro'
     if 'ending' in head:
         return 'ending'
     # if none of these, try single letters
@@ -229,23 +234,29 @@ def get_ccli(lines):
 def get_text(lines):
     return '\n'.join(lines[2:])
 
+def get_html(lines):
+    return html_export(lines)
+
 credits = "Vicky Beeching © 2001 UK/Eire CCLI # 3447521"
 def parse_credits(credits):
     """Parse credits (usually second line of a song)
     to identify relevant information.
     Returns : list of keys and values
     """
-    line = split(credits)
+    line = re.split("[\s\#\©]", credits)
     # if is_blank(credits):
     #     return 'BLANK'
     try:
         for item_index, item in enumerate(line):
             # this could also match some ccli numbers
-            if re.search('^[1|2]\d{3}$', item) != None:
+            if is_date(item):
                 date = item
                 author = ' '.join(line[:line.index(item)])
             if item.lower() == 'ccli':
-                ccli = line[item_index+1]
+                if line[item_index+1] == '':
+                    ccli = line[item_index+2]
+                else:
+                    ccli = line[item_index+1]
                 producer = ' '.join(line[line.index(date)+1:line.index(item)])
             # print author, producer, date, ccli
         return {'author':author, 'producer':producer, 'date':date, 'ccli':ccli}
@@ -254,7 +265,7 @@ def parse_credits(credits):
         try:
             for item_index, item in enumerate(line):
                 # this could also match some ccli numbers
-                if re.search('^[1|2]\d{3}$', item) != None:
+                if is_date(item):
                     date = item
                     author = ' '.join(line[:line.index(item)])
                     producer = ' '.join(line[line.index(date)+1:])
@@ -404,13 +415,16 @@ def line_to_html_row(line, line_type):
     output += "</tr>\n"
     return output
 
-def html_export(in_file, out_file=None):
-    """Parse input file, produce export file of html
+# def html_export(in_file, out_file=None):
+#     """Parse input file, produce export file of html
+#     Return output text (string), optional output file
+#     """
+def html_export(lines):
+    """
     Return output text (string), optional output file
     """
-
-    # parse file
-    lines = read_file(in_file)
+    # # parse file
+    # lines = read_file(in_file)
     # print lines
     out_lines = classify_song(lines)
 
@@ -423,7 +437,7 @@ def html_export(in_file, out_file=None):
         else:
             sheet_music.append(line)
     out_text = ''
-    out_text += html_head()
+    out_text += html_head('/songs/application/static/css/songs.css')
 
     # append beginning of metadata
     for data in metadata:
@@ -454,19 +468,19 @@ def html_export(in_file, out_file=None):
                     context = split(line[1])[0]
                     i += 1
                     out_text += '<br>\n'
-                    print line
+                    # print line
                 elif line[0] == 'chords':
                     lyrics = sheet_music[i+1]
                     out_text += chord_lyric_split(line[1], lyrics[1], 'chords_'+context)
                     i += 2
                     out_text += '<br>\n'
-                    print line
+                    # print line
                 elif line[0] == 'blank':
-                    print line
+                    # print line
                     # out_text += '<br>\n'
                     i += 1
                 else:
-                    print line
+                    # print line
                     raise UnfinishedParse
             else:
                 if line[0] == 'heading':
@@ -475,7 +489,7 @@ def html_export(in_file, out_file=None):
                     out_text += '</div>'
                     context = split(line[1])[0]
                     i += 1
-                    print line
+                    # print line
                     found_header = True
                     out_text += '<br>\n'
                 else:
@@ -486,18 +500,25 @@ def html_export(in_file, out_file=None):
                     else:
                         out_text += '<br>'
                     i += 1
-                    print line
+                    # print line
         except IndexError:
             break
 
     out_text += html_foot()
-    if out_file != None:
-        f = open(out_file, 'w')
-        f.write(out_text)
+    # if out_file != None:
+    #     f = open(out_file, 'w')
+    #     f.write(out_text)
 
 
-    print metadata
+    # print metadata
     return out_text
+
+def parse_credit_test():
+    TEXT_DIR = 'txt'
+    songs = os.listdir(TEXT_DIR)
+    for i in songs:
+        credit_line = read_file(TEXT_DIR + '/' + i)[1]
+        print parse_credits(credit_line)
 
 def main():
 
@@ -508,10 +529,6 @@ def main():
     # print chord_lyric_split(chords, lyrics, 'verse')
     # for i in os.listdir(SONG_DIR):
     #     html_export(SONG_DIR + '/' + i, HTML_DIR + '/' + i)
-    # songs = os.listdir(TEXT_DIR)
-    # for i in songs:
-    #     credit_line = read_file(TEXT_DIR + '/' + i)[1]
-    #     print parse_credits(credit_line)
     # html_export(SONG_DIR + '/' + songs[0], HTML_DIR + '/' + songs[0])
     # print classify_song('txt/Oh Great God')
     # a = html_export(sys.argv[1], sys.argv[2])
@@ -519,7 +536,8 @@ def main():
     # line = '<body>Body</body>'
     # print is_xml_line(line)
     # print parse_credits(credits)
-    process_upload(read_file(sys.argv[1]))
+    # process_upload(read_file(sys.argv[1]))
+    parse_credit_test()
 
 
     print 'time: %e' % (time.time() - s)

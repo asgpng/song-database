@@ -59,6 +59,17 @@ class Song extends CI_Model {
     return $query;
   }
 
+  function get_songs_search($search_query)
+  {
+    $query = $this->db->query("SELECT * FROM songs WHERE MATCH(title, author, producer, text) AGAINST ('$search_query');");
+    return $query;
+  }
+
+  function get_number_songs() {
+    $query = $this->db->query("SELECT * FROM songs;");
+    return $query->num_rows();
+  }
+
   function get_text($id) {
     $query = $this->db->query("SELECT text FROM songs WHERE id = '$id';");
     return $query->row()->text;

@@ -40,7 +40,7 @@ class Set extends CI_Model {
 
   function get_current_songs($set_id) {
     /* $query = $this->db->query("SELECT * from set_songs INNER JOIN songs ON songs.id = set_songs.song_id INNER JOIN sets ON sets.id = '$set_id ORDER BY set_songs.position ASC';"); */
-    $this->db->select("*", false);
+    $this->db->select("*"); // false?
     $this->db->from('set_songs');
     $this->db->join('songs', 'songs.id = set_songs.song_id');
     $this->db->join('sets', 'sets.id = ' . (int) $set_id);
@@ -52,6 +52,11 @@ class Set extends CI_Model {
   function current_song_count($set_id) {
     $query = $this->set->get_current_songs($set_id);
     return $query->num_rows();
+  }
+
+  function last_set() {
+    $query = $this->db->query("SELECT MAX(id) as id from sets;");
+    return $query->row()->id;
   }
 
   function add_to_set($song_id, $set_id) {

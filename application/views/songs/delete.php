@@ -1,11 +1,11 @@
 <form>
   <table class="table table-striped">
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Producer</th>
-      <th>Year</th>
-      <th>CCLI</th>
+      <th><?php echo anchor('music/delete_songs?order_by=title', 'Title') ?></th>
+      <th><?php echo anchor('music/delete_songs?order_by=author', 'Author') ?></th>
+      <th><?php echo anchor('music/delete_songs?order_by=producer', 'Producer') ?></th>
+      <th><?php echo anchor('music/delete_songs?order_by=year', 'Year') ?></th>
+      <th><?php echo anchor('music/delete_songs?order_by=ccli', 'CCLI') ?></th>
       <th>Delete</th>
     </tr>
     <?php foreach ($query->result() as $row): ?>

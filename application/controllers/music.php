@@ -5,12 +5,27 @@ class Music extends CI_Controller {
   public function __construct() {
     parent::__construct();
     is_logged_in();
+    is_admin();
     $this->load->model('song');
+    $this->load->model('set_songs');
   }
 
   public function index() {
+    $order_by = $this->input->get('order_by');
     $data['title'] = 'View Songs';
-    $data['query'] = $this->song->get_songs();
+    if ($order_by != '') {
+      $data['query'] = $this->song->get_songs($order_by);
+    }
+    else {
+      $search = $this->input->get('search');
+      if ($search == 1) {
+        $data['query'] = $this->song->get_songs_search($this->input->post('search_query'));
+      }
+      else {
+        $data['query'] = $this->song->get_songs();
+      }
+    }
+    $data['number_songs'] = $this->song->get_number_songs();
     $this->load->view('templates/header', $data);
     $this->load->view('songs/index', $data);
     $this->load->view('templates/footer', $data);
@@ -50,6 +65,18 @@ class Music extends CI_Controller {
     $this->load->view('templates/footer', $data);
   }
 
+  public function view_html($id) {
+    $my_file = './tmp/tmp.txt';
+    $this->load->helper('file');
+    $song = $this->song->get_song($id);
+    write_file($my_file, $song->text);
+    exec('./python/get_html.py ' . $my_file, $html);
+    foreach ($html as $line) {
+      echo $line;
+    }
+    delete_files('./tmp/');
+  }
+
   public function update_metadata() {
     $id = $this->input->post('id');
     $this->song->update_individual($id, 'title', $this->input->post('title'));
@@ -78,13 +105,22 @@ class Music extends CI_Controller {
     $year = $this->input->post('year');
     $ccli = $this->input->post('ccli');
     $standard_key = $this->input->post('standard_key');
-    $this->song->insert_song($title, $author, $producer, $year, $ccli, $standard_key);
-    redirect('music', 'refresh');
+    $text = '';
+    $this->song->insert_song($title, $author, $producer, $year, $ccli, $text, $standard_key);
+    /* redirect('music', 'refresh'); */
+    $id = $this->song->get_id($title, $author);
+    redirect('music/codemirror/'.$id);
   }
 
   public function delete_songs() {
-    $data['title'] = 'View Songs';
-    $data['query'] = $this->song->get_songs();
+    $order_by = $this->input->get('order_by');
+    $data['title'] = 'Delete Songs';
+    if ($order_by != '') {
+      $data['query'] = $this->song->get_songs($order_by);
+    }
+    else {
+      $data['query'] = $this->song->get_songs();
+    }
     $this->load->view('templates/header', $data);
     $this->load->view('songs/delete', $data);
     $this->load->view('templates/footer', $data);
@@ -110,10 +146,36 @@ class Music extends CI_Controller {
     echo $producer[0];
     echo $date[0];
     echo $ccli[0];
-    if (!$this->song->song_exists($title[0], $author[0])) {
+    if (!$this->song->song_exists(safe($title[0]), safe($author[0]))) {
       $this->song->insert_song($title[0], $author[0], $producer[0], $date[0], $ccli[0], $text, '');
     }
     redirect('music');
+    /* die(); */
+  }
+
+  public function add_songs() {
+    $this->load->helper('file');
+    $file_names = get_filenames('./upload/');
+    foreach ($file_names as $myFile) {
+      $myFile = './upload/' . $myFile;
+      /* echo $myFile; */
+      /* echo '<br>'; */
+      exec('./python/get_title.sh ' . $myFile, $title);
+      /* exec('./python/get_author.py ' . $myFile, $author); */
+      /* exec('./python/get_producer.py ' . $myFile, $producer); */
+      /* exec('./python/get_date.py ' . $myFile, $date); */
+      /* exec('./python/get_ccli.py ' . $myFile, $ccli); */
+      /* /\* /\\* exec('./python/get_text.py ' . $myFile, $text); *\\/ *\/ */
+      /* $text = read_file($myFile); */
+      echo $title[0];
+      /* echo $author[0]; */
+      /* echo $producer[0]; */
+      /* echo $date[0]; */
+      /* echo $ccli[0]; */
+      /* if (!$this->song->song_exists($title[0], $author[0])) { */
+      /*   $this->song->insert_song($title[0], $author[0], $producer[0], $date[0], $ccli[0], $text, ''); */
+      /* } */
+    }
   }
 
   public function test() {

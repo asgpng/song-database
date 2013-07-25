@@ -37,11 +37,12 @@ if(!function_exists('is_faculty')) {
 
 /* to ensure this is viewable only by admin */
 /* Can easily change to redirect to 404 instead */
-if(!function_exists('is_administrator')) {
-  function is_administrator() {
+if(!function_exists('is_admin')) {
+  function is_admin() {
     $CI =& get_instance();
-    if (!($CI->session->userdata('user_type') == 'administrator')) {
+    if (!($CI->session->userdata('user_type') == 'admin')) {
       echo 'You do not have permission to access this page.';
+      echo anchor('test_login', 'Login');
       die();
     }
   }

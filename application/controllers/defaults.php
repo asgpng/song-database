@@ -47,6 +47,7 @@ class Defaults extends CI_Controller {
     }
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
+    $this->load->model('user');
     $this->form_validation->set_rules('netID', 'netID', 'trim|required|max_length[10]|xss_clean');
 
     if ($this->form_validation->run())
@@ -54,10 +55,10 @@ class Defaults extends CI_Controller {
         $data = array();
         $data['validation_errors'] = validation_errors();
         $netID = $this->input->post('netID');
-        /* $current_user = $this->user->get_user($netID); */
+        $current_user = $this->user->get_user($netID);
         $semester = 'F13';
         /* $userdata = array('netID' => $netID, 'user_type' => $current_user->user_type, 'is_logged_in' => true); */
-        $userdata = array('netID' => $netID, 'user_type' => 'default', 'is_logged_in' => true);
+        $userdata = array('netID' => $netID, 'user_type' => $current_user->user_type, 'is_logged_in' => true);
         $this->session->set_userdata($userdata);
         if ($this->session->userdata('next') != '') {
           $next = $this->session->userdata('next');

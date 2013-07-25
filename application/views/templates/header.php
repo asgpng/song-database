@@ -51,6 +51,9 @@
                 <li><?php echo anchor('music/edit', 'Edit Songs'); ?></li>
                 <li><?php echo anchor('files/upload', 'Upload'); ?></li>
                 <li><?php echo anchor('files/view_files', 'View Uploads'); ?></li>
+                <?php if ($this->session->userdata('user_type') == 'admin') : ?>
+                <li><?php echo anchor('music/delete_songs', 'Delete Songs'); ?></li>
+                <?php endif ?>
               </ul>
             </li>
           </ul>
@@ -61,7 +64,7 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><?php echo anchor('sets', 'View Sets'); ?></li>
-                <li><?php echo anchor('sets/choose_songs', 'New Set'); ?></li>
+                <li><?php echo anchor('sets/new_set', 'New Set'); ?></li>
               </ul>
             </li>
           </ul>

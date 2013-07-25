@@ -53,6 +53,7 @@
   </textarea>
   <input type="submit" value="Save">
 </form>
+<?php echo anchor('/music/view_html/' . $song->id, 'View html'); ?>
 
 <script>
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {

@@ -1,0 +1,45 @@
+body {
+    font-family : sans-serif, sans;
+    margin      : 60px;
+}
+.heading {
+    font-weight : bold;
+    font-size   : 16px;
+}
+.title {
+    font-weight : bold;
+    font-size   : 20px;
+}
+.credits {
+    font-size   : 10px;
+    position    : relative;
+    top         : 5px;
+}
+span[chords_verse]:before {
+    position    : relative;
+    top         : -1.3em;
+    display     : inline-block;
+    content     : attr(chords_verse);
+    width       : 0;
+    font-weight : bold;
+    font-size   : 13px;
+}
+span[chords_pre]:before {
+    position    : relative;
+    top         : -1.3em;
+    display     : inline-block;
+    content     : attr(chords_pre);
+    width       : 0;
+    font-weight : bold;
+    font-size   : 13px;
+}
+span[chords_chorus]:before {
+    position    : relative;
+    top         : -1em;
+    display     : inline-block;
+    content     : attr(chords_chorus);
+    width       : 0;
+    font-style  : italic;
+    font-weight : bold;
+    font-size   : 13px;
+}

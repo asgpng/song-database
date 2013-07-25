@@ -6307,6 +6307,7 @@ button.close {
 #songs {
     /* width:600px; */
     float: left;
+    width:780px;
 }
 .footer {
     text-align: center;

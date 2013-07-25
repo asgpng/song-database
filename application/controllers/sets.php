@@ -23,8 +23,11 @@ class Sets extends CI_Controller {
     $date = $this->input->post('date');
     $event = $this->input->post('event');
     $theme = $this->input->post('theme');
+    if ($date == '') {
+      $this->set->insert_set(0, 0, 0);
+    }
     $this->set->insert_set($date, $event, $theme);
-    $id = $this->set->get_id($date, $event, $theme);
+    $id = $this->set->last_set();
     redirect('sets/choose_songs/'.$id);
   }
 
@@ -80,5 +83,7 @@ class Sets extends CI_Controller {
     $set_id = 1;
     $format = 'sets.id = %d';
     echo sprintf($format, $set_id);
+    echo '<br>';
+    echo $this->set->last_set();
   }
 }

@@ -12,8 +12,8 @@
   <form>
     <table class="table table-condensed">
       <tr>
-        <th>Current Set:</th>
-        <th></th>
+        <th style="width: 60%">Current Set:</th>
+        <th style="width: 40%"></th>
         <!-- <th></th> -->
         <!-- <th></th> -->
       </tr>
@@ -24,15 +24,15 @@
         <td><?php echo anchor('music/codemirror/'.$song->song_id, $song->title); ?></td>
         <td>
           <div class="btn-group">
-            <button type="submit" formmethod="post" formaction="<?php echo site_url('/sets/switch_songs/' . $i . '/up/' . $set->id); ?>" >
+            <button type="submit" formmethod="post" class="btn" formaction="<?php echo site_url('/sets/switch_songs/' . $i . '/up/' . $set->id); ?>" >
               <!-- from http://www.iconfinder.com/icondetails/126585/128/arrow_forward_next_icon -->
               <img src="<?php echo base_url('application/static/img/up_arrow.png')?>" width="10" height="10">
             </button>
-            <button type="submit" formmethod="post" formaction="<?php echo site_url('/sets/switch_songs/' . $i . '/down/' . $set->id); ?>" >
+            <button type="submit" formmethod="post" class="btn" formaction="<?php echo site_url('/sets/switch_songs/' . $i . '/down/' . $set->id); ?>" >
               <!-- from http://www.iconfinder.com/icondetails/126585/128/arrow_forward_next_icon -->
               <img src="<?php echo base_url('application/static/img/down_arrow.png')?>" width="10" height="10">
             </button>
-            <button type="submit" formmethod="post" formaction="<?php echo site_url('/sets/remove_from_set/' . $song->song_id . '/' . $set->id . '/' . $i); ?>" >
+            <button type="submit" formmethod="post" class="btn" formaction="<?php echo site_url('/sets/remove_from_set/' . $song->song_id . '/' . $set->id . '/' . $i); ?>" >
               <!-- from http://www.iconfinder.com/icondetails/126585/128/arrow_forward_next_icon -->
               <img src="<?php echo base_url('application/static/img/right_arrow.png')?>" width="10" height="10">
             </button>
@@ -47,16 +47,16 @@
   <form>
     <table class="table table-condensed">
       <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Producer</th>
-        <th>Key</th>
+        <th style="width: 7%"></th>
+        <th style="width: 23%">Title</th>
+        <th style="width: 40%">Author</th>
+        <th style="width: 25%">Producer</th>
+        <th style="width: 5%">Key</th>
       </tr>
       <?php foreach ($songs->result() as $song): ?>
       <tr>
         <td>
-          <button type="submit" formmethod="post" formaction="<?php echo site_url('/sets/add_to_set/' . $song->id . '/' . $set->id); ?>">
+          <button type="submit" formmethod="post" class="btn" formaction="<?php echo site_url('/sets/add_to_set/' . $song->id . '/' . $set->id); ?>">
             <!-- from http://www.iconfinder.com/icondetails/126585/128/arrow_back_previous_icon -->
             <img src="<?php echo base_url('application/static/img/left_arrow.png')?>" width="10" height="10">
           </button>
