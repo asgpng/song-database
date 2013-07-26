@@ -13,6 +13,7 @@ class Music extends CI_Controller {
   public function index() {
     $order_by = $this->input->get('order_by');
     $data['title'] = 'View Songs';
+    $data['search_action'] = site_url('/music?search=1');
     if ($order_by != '') {
       $data['query'] = $this->song->get_songs($order_by);
     }

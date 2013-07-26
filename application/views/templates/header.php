@@ -6,26 +6,53 @@
     <meta name="description" content="">
     <meta name="author" content="Adam Gallagher">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/css/bootstrap.css')?>">
-    <title><?php echo $title ?> - Song Database</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/css/bootstrap.css'); ?>">
 
-    <script src="/songs/codemirror/lib/codemirror.js"></script>
-    <script src="/songs/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="/songs/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="/songs/codemirror/mode/xml/xml.js"></script>
-    <script src="/songs/codemirror/mode/javascript/javascript.js"></script>
-    <script src="/songs/codemirror/mode/css/css.js"></script>
-    <script src="/songs/codemirror/mode/clike/clike.js"></script>
-    <script src="/songs/codemirror/mode/php/php.js"></script>
-    <script src="/songs/application/static/js/jquery-2.0.3.min.js"></script>
-    <script src="/songs/application/static/js/bootstrap.js"></script>
-    <style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
     <!-- <link rel="stylesheet" href="/songs/codemirror/doc/docs.css"> -->
     <link rel="stylesheet" href="/songs/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/songs/codemirror/addon/dialog/dialog.css">
 
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/css/default.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/static/css/edits.css'); ?>">
+
+    <!-- javascript -->
+    <script src="/songs/codemirror/lib/codemirror.js"></script>
+    <script src="/songs/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/songs/codemirror/addon/search/searchcursor.js"></script>
+    <script src="/songs/codemirror/addon/search/search.js"></script>
+    <script src="/songs/codemirror/addon/dialog/dialog.js"></script>
+    <script src="/songs/application/static/js/jquery-2.0.3.min.js"></script>
+    <script src="/songs/application/static/js/bootstrap.js"></script>
+    <script src="/songs/application/static/js/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $("#datepicker").datepicker( {
+            dateFormat: $.datepicker.ISO_8601
+        } );
+    });
+    </script>
+    <script type="text/javascript">
+    function set_action() {
+        var action = "<?php if (isset($search_action)) echo $search_action; ?>";
+
+        if (action != null) {
+            document.song_search.action = action;
+        }
+        else {
+            document.song_search.action = '';
+        }
+        // alert (action);
+        // alert(document.getElementById("song_search").action);
+    }
+    function test() {
+        alert('test');
+    }
+
+    </script>
+    <title><?php echo $title ?> - Song Database</title>
   </head>
-
-  <body>
+  <body onload="set_action();">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -72,8 +99,8 @@
             <li><?php echo anchor('about', 'About'); ?></li>
             <li><?php echo anchor('contact', 'Contact'); ?></li>
           </ul>
-          <form class="navbar-search pull-right">
-            <input type="text" class="search-query" placeholder="Search">
+          <form class="navbar-search pull-right" method="POST" name="song_search" id="song_search" action="">
+            <input type="text" class="search-query" placeholder="Search" name="search_query">
           </form>
         </div>
       </div>

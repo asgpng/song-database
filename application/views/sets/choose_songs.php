@@ -1,6 +1,6 @@
 <form action="<?php echo site_url('sets/update_set'); ?>" class="form-inline" method="POST">
   <label for="date" class="control-label">Date</label>
-  <input type="text" name="date" onchange="this.form.submit()" value="<?php echo $set->date; ?>" />
+  <input type="text" name="date" id="datepicker" onchange="this.form.submit()" value="<?php echo $set->date; ?>" />
   <label for="event" class="control-label">Event</label>
   <input type="text" name="event" onchange="this.form.submit()" value="<?php echo $set->event; ?>" />
   <label for="theme" class="control-label">Theme</label>
@@ -8,6 +8,7 @@
   <input type="hidden" name="id" value="<?php echo $set->id; ?>" >
   <!-- <input type="submit" value="Update Set"> -->
 </form>
+Showing <?php echo $songs->num_rows() ?> of <?php echo $number_songs ?> songs in the database.<br>
 <div id="current_set">
   <form>
     <table class="table table-condensed">
@@ -48,9 +49,9 @@
     <table class="table table-condensed">
       <tr>
         <th style="width: 7%"></th>
-        <th style="width: 23%">Title</th>
-        <th style="width: 40%">Author</th>
-        <th style="width: 25%">Producer</th>
+        <th style="width: 23%"><?php echo anchor('sets/choose_songs/' . $set->id . '?order_by=title', 'Title') ?></th>
+        <th style="width: 40%"><?php echo anchor('sets/choose_songs/' . $set->id . '?order_by=author', 'Author') ?></th>
+        <th style="width: 25%"><?php echo anchor('sets/choose_songs/' . $set->id . '?order_by=producer', 'Producer') ?></th>
         <th style="width: 5%">Key</th>
       </tr>
       <?php foreach ($songs->result() as $song): ?>

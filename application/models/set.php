@@ -30,7 +30,7 @@ class Set extends CI_Model {
 
   function get_sets()
   {
-    $query = $this->db->query("SELECT * FROM sets;");
+    $query = $this->db->query("SELECT * FROM sets ORDER BY date;");
     return $query;
   }
 
@@ -43,7 +43,9 @@ class Set extends CI_Model {
     $this->db->select("*"); // false?
     $this->db->from('set_songs');
     $this->db->join('songs', 'songs.id = set_songs.song_id');
-    $this->db->join('sets', 'sets.id = ' . (int) $set_id);
+    $this->db->join('sets', 'sets.id = set_songs.set_id');
+    $this->db->where('sets.id', $set_id);
+    /* $this->db->join('sets', 'sets.id = ' . (int) $set_id); */
     $this->db->order_by('set_songs.position', 'asc');
     $query = $this->db->get();
     return $query;

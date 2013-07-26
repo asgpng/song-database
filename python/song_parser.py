@@ -33,21 +33,26 @@ def is_date(item):
         return True
     return False
 
+def chord_test():
+    print is_chord('A A E/G# F#m B Esus E\n')
+
 def is_chord(line):
     """Check if line contains chords.
     Returns : boolean
     """
-    test = re.split('\W|\d', line)
+    # test = re.split('[^a-zA-Z0-9#\/]', line)
+    test = re.split('[\W\d]', line)
     chords = ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#']
+    misc = ['min', 'dim', 'sus', 'maj', 'm', 'b']
     i = 0
     # while i < len(test):
     for chord in test:
         if chord != '':
             # chord = test[i]
             # chords should have following properties (eventually check)
-            if chord[0] not in chords:
+            if chord[0] not in chords and chord[0] not in misc:
                 return False
-            if len(chord) > 1 and chord[1:].lower() not in ['min', 'dim', 'sus', 'maj', 'm', 'b']:
+            if len(chord) > 1 and chord[1:].lower() not in misc:
                 return False
             # most chords would be less than 6 characters long
             if len(chord) > 6:
@@ -153,10 +158,10 @@ def get_heading(line):
         return 'verse ' + str(number)
     # if 'c' in head:
     #     return 'chorus'
-    if 'b' in head:
-        return 'bridge'
-    if 'r' in head:
-        return 'refrain'
+    # if 'b' in head:
+    #     return 'bridge'
+    # if 'r' in head:
+    #     return 'refrain'
     return None
 
 def capitalize_first(word):
@@ -333,12 +338,21 @@ def sanitize(line):
     """Replace problematic characters with suitable substitutes
     Returns : string
     """
-    line = re.sub('\’', "'", line)
+    line = re.sub('\’', "&apos;", line)
+    line = re.sub('\‘', "&apos;", line)
     line = re.sub('\xef\xbb\xbf', "", line)
+    line = re.sub('©', '&copy;', line)
+    # line = re.sub('Â', "", line)
     return  line
 
+def un_tabify(chords):
+    """Replace tabs with spaces
+    Returns : string
+    """
+    return re.sub('\t', '   ', chords)
+
 def chord_split(chords):
-    list = re.split('\s', chords)
+    list = re.split('[\s]', chords)
     chord_list = []
     for i in list:
         if i != '':
@@ -354,7 +368,7 @@ def chord_lyric_split(chords, lyrics, context=''):
     j = 0
     k = 0
     l = 0
-
+    chords = un_tabify(chords)
     chord_list = chord_split(chords) # array of chords
     output = ""
     while k < len(chord_list):
@@ -427,6 +441,7 @@ def html_export(lines):
     # lines = read_file(in_file)
     # print lines
     out_lines = classify_song(lines)
+    print out_lines;
 
     # split into metadata and sheet music
     metadata = []
@@ -443,6 +458,9 @@ def html_export(lines):
     for data in metadata:
         if data[0] == 'title':
             out_text += '<div class="title">' + data[1] + '</div>\n'
+    for data in metadata:
+        if data[0] == 'credits':
+            out_text += '<div class="credits">' + sanitize(data[1]) + '</div>\n'
     for data in metadata:
         if data[0] == 'author':
             out_text += data[1] + ' '
@@ -479,8 +497,11 @@ def html_export(lines):
                     # print line
                     # out_text += '<br>\n'
                     i += 1
+                elif line[0] == 'lyrics':
+                    out_text += line[1] + '<br>'
+                    i += 1
                 else:
-                    # print line
+                    print line
                     raise UnfinishedParse
             else:
                 if line[0] == 'heading':
@@ -496,9 +517,9 @@ def html_export(lines):
                     if i == 0:
                         out_text += '<div class="title">' + line[1] + '</div>\n'
                     elif i == 1:
-                        out_text += '<div class="credits">' + line[1] + '</div>\n'
+                        out_text += '<div class="heading">' + line[1] + '</div>\n'
                     else:
-                        out_text += '<br>'
+                        out_text += line[1] + '<br>'
                     i += 1
                     # print line
         except IndexError:

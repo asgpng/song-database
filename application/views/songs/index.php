@@ -1,7 +1,4 @@
 Showing <?php echo $query->num_rows() ?> of <?php echo $number_songs ?> songs in the database.<br>
-<form class="navbar-search pull-left" method="POST" action="<?php echo site_url('/music?search=1'); ?>">
-  <input type="text" class="search-query" placeholder="Search" onchage="this.form.submit()" name="search_query">
-</form>
 <form action="<?php echo site_url('/music/insert_song'); ?>" method="POST">
   <table class="table table-striped">
     <tr>

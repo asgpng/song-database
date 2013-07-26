@@ -1,10 +1,14 @@
-body {
+html {
     font-family : sans-serif, sans;
     margin      : 60px;
+}
+body {
+    margin      : 0px;
 }
 .heading {
     font-weight : bold;
     font-size   : 16px;
+    margin      : 4px 0 -8px;
 }
 .title {
     font-weight : bold;
@@ -17,7 +21,7 @@ body {
 }
 span[chords_verse]:before {
     position    : relative;
-    top         : -1.3em;
+    top         : -1.2em;
     display     : inline-block;
     content     : attr(chords_verse);
     width       : 0;
@@ -26,7 +30,7 @@ span[chords_verse]:before {
 }
 span[chords_pre]:before {
     position    : relative;
-    top         : -1.3em;
+    top         : -1.2em;
     display     : inline-block;
     content     : attr(chords_pre);
     width       : 0;
@@ -35,9 +39,19 @@ span[chords_pre]:before {
 }
 span[chords_chorus]:before {
     position    : relative;
-    top         : -1em;
+    top         : -1.2em;
     display     : inline-block;
     content     : attr(chords_chorus);
+    width       : 0;
+    font-style  : italic;
+    font-weight : bold;
+    font-size   : 13px;
+}
+span[chords_bridge]:before {
+    position    : relative;
+    top         : -1.2em;
+    display     : inline-block;
+    content     : attr(chords_bridge);
     width       : 0;
     font-style  : italic;
     font-weight : bold;

@@ -20,10 +20,11 @@
     </tr>
     <tr>
       <td>
-        <input type="text" name="date" placeholder="Date" />
+        <!-- <input type="text" name="date" placeholder="Date" /> -->
+        <input class="input-small" type="text" name="date" id="datepicker" placeholder="Date" />
       </td>
       <td>
-        <input type="text" name="event" placeholder="Event" />
+        <input class="input-small" type="text" name="event" placeholder="Event" />
       </td>
       <td>
         <input type="text" name="theme" placeholder="Theme" />
