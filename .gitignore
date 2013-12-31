@@ -8,6 +8,8 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+asg4_songs*
+
 application/config/*
 <<<<<<< HEAD
 application/application2/*
