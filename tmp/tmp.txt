@@ -1,49 +1,49 @@
-Be Unto Your Name
-Lynn DeShazo and Gary Sadler &copy; 1998 Integrity's Hosanna! CCLI #2177476
-Order: V1 C V2 C Cmod, C(mod), last line 4x
+At The Cross
+Darlene Zschech, Reuben Morgan
+Order: I V1 C I V2 Cx2 Bx2 V3 (quiet) C (build) C (big) Bx2 Ix2
 
-Intro: C G Dm Am F C Gsus G
+Intro: A    E/G#  A    B  (x2)
 
 Verse 1:
-B        F#      C#m        G#m
-We are a moment, You are forever
-E           B     A          F#sus F#
-Lord of the ages, God before time
-B        F#     C#m      G#m
-We are a vapor, You are eternal
-E        B        A           F#sus F#
-Love everlasting, reigning on high
+G/B    C2               D         Em7     G/B     C2           D
+    Oh Lord You've searched me,        You know my way;
+G/B      C2       D   Em7                    C2                Dsus4  D
+    Even when I fail You,                      I know You love me.
+G/B      C2   D  Em7                      G/B     C2        D
+    Your holy presence                         Surrounding me
+G/B    C2    D  Em7                          C2              Dsus4  D
+    In every season,                              I know You love me;
+C2             Dsus4  D
+I know You love me.
 
 Chorus:
-G#m    E     B/Eb            F#sus F#
-Holy, holy, Lord, God Almighty
- G#m     E        B                     F#sus
-Worthy is the Lamb who was slain
- G#m         E       B/Eb            F#
-Highest praises, honor and glory
-C#m  G#m          F#sus F#
-  Be unto Your name   (Asus to opt. modulation)
-C#m  G#m          F#sus  F#
-  Be unto Your name
+A                     AG##/F     F#m
+  At the cross I bow my knee,
+                                      G/B       C
+Where Your blood was shed for me,
+                                               D
+There's no greater love than this.
+A                       AG##/F      F#m
+  You have overcome the grave,
+                               G/B      C
+Your glory fills the highest place,
+                                        D
+What can separate me now?
 
 Verse 2:
-B                 F#        C#m            G#m
-We are the broken, You are the healer
-  E            B          A          F#sus F#
-Jesus, Redeemer, mighty to save
-   B              F#          C#m            G#m
-You are the love song we'll sing forever
-   E            B             A                F#sus
-Bowing before You blessing Your name
+G/B     C2   D    Em7                      G/B     C2           D
+    You go before me,                           You shield my way,
+G/B      C2     D    Em7                        C2             Dsus4  D
+    Your hand upholds me;                    I know You love me.
 
-Chorus (modulated):
-Bbm      F#      C#/F                G#sus G#
-Holy, holy, Lord, God Almighty
-    Bbm    F#         C#                        G#sus
-Worthy is the Lamb who was slain
-   Bbm         F#         C#/F            G#sus G#
-Highest praises, honor and glory
-Ebm     Bbm          G#sus G#
-  Be unto Your name
-Ebm     Bbm          G#sus  G#
-  Be unto Your name
+Verse 3:
+E/G#    A2       B     C#m7               E/G#      A2       B   -
+    And when the earth fades,               Falls from my eyes,
+G/B         C2      D   Em7                  C2         Dsus4  D
+    And You stand before me,               I know You love me;
+C2         Dsus4  D
+I know You love me.
+
+Bridge:
+                     C2    D              Em7                                   C        Em7    D
+You tore the veil, You made a way                When You said that it is done.
