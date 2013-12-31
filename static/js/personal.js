@@ -1,4 +1,4 @@
-var base_url = '/~asg4/songs/index.php';
+ #var base_url = '/~asg4/songs/index.php';
 
 // editor windows after transpose
 $(document).ready(function() {

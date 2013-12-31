@@ -691,12 +691,18 @@ def html_export(lines):
                 # out_text += '<br>'
                 last_line = 'heading'
             elif line[0] == 'chords':
-                lyrics = sheet_music[i+1]
-                out_text += chord_lyric_split(line[1], lyrics[1], 'chords')
-                i += 2
-                # out_text += '<br>'
-                last_line = 'chords'
+                try:
+                    lyrics = sheet_music[i+1]
+                    out_text += chord_lyric_split(line[1], lyrics[1], 'chords')
+                    i += 2
+                    # out_text += '<br>'
+                    last_line = 'chords'
+                except IndexError:
+                    continue
             elif line[0] == 'blank':
+                i += 1
+                last_line = 'blank'
+
 
                 # check if next line is has chords: if so, add an extra break
                 try:
@@ -708,8 +714,6 @@ def html_export(lines):
 
                 # if last_line != 'blank':
                 # out_text += '<br>'
-                i += 1
-                last_line = 'blank'
             elif line[0] == 'lyrics':
                 out_text += line[1]
                 # check if next line has chords: if so, add an extra break
