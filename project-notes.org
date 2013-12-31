@@ -1,0 +1,11 @@
+TODO:
+- filter song list with links
+- sort song list with links
+- search feature
+- export lyrics, chords, sheet music
+- implement transpose
+- songs that won't add:
+  - Potter's Hand
+- fix get_current_songs($set_id) -> right now all sets have same song list!
+- fix search bugs - customize mysql search returns
+- fix html rendering with apostrophe below chord

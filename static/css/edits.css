@@ -1,0 +1,72 @@
+#editor {
+    margin: 0;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+}
+.table label {
+    font-weight: bold;
+}
+
+#current_set {
+    width:300px;
+    float: left;
+    padding-right: 10px;
+}
+
+#songs {
+    /* width:600px; */
+    float: left;
+    width:780px;
+    padding-left:320px;
+}
+.footer {
+    text-align: center;
+    margin-bottom: 9px;
+}
+.footer-links {
+    margin: 10px 0;
+}
+.footer-links li {
+    display: inline;
+    padding: 0 2px;
+}
+.container-fluid img {
+    padding: 5px;
+}
+#form_song_data {
+    width : 400px;
+    margin-left: -40px
+    padding-right: 40px;
+    float: left;
+}
+.cm-editor {
+    float: left;
+    padding-left: 20px;
+}
+.cm-buttons {
+    position: relative;
+    padding-top: 10px;
+    margin-bottom: -10px;
+}
+.CodeMirror {
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.navbar-text li {
+    margin-top: 10px;
+    list-style-type: none;
+}
+.song_submit_btn {
+
+}
+.tags {
+    float: right;
+    padding-right: 50px;
+}
+.song_data_header {
+    float: left;
+}

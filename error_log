@@ -1,0 +1,5 @@
+[29-Jul-2013 03:41:35 UTC] PHP Fatal error:  Class 'CAS' not found in /NAShomes/publichtmls/mycpanel/asg4/public_html/songs/application/controllers/defaults.php on line 113
+[29-Jul-2013 04:27:45 UTC] PHP Fatal error:  Call to a member function num_rows() on a non-object in /NAShomes/publichtmls/mycpanel/asg4/public_html/songs/application/views/songs/index.php on line 1
+[27-Sep-2013 03:31:38 UTC] PHP Fatal error:  Cannot redeclare Sets::test() in /NAShomes/publichtmls/mycpanel/asg4/public_html/songs/application/controllers/sets.php on line 102
+[25-Oct-2013 03:52:37 UTC] PHP Fatal error:  Call to a member function result() on a non-object in /NAShomes/publichtmls/mycpanel/asg4/public_html/songs/application/views/sets/index.php on line 9
+[25-Oct-2013 03:54:11 UTC] PHP Fatal error:  Call to a member function result() on a non-object in /NAShomes/publichtmls/mycpanel/asg4/public_html/songs/application/views/sets/index.php on line 9

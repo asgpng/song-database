@@ -1,0 +1,10 @@
+                    # print line
+                # if line[0] == 'heading':
+                #     out_text += '<div class="' + line[0] + '">'
+                #     out_text += capitalize_first(line[1]) + ' '
+                #     out_text += '</div>'
+                #     context = split(line[1])[0]
+                #     i += 1
+                #     # print line
+                #     found_header = True
+                #     out_text += '<br>\n'

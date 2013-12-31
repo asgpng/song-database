@@ -1,0 +1,16 @@
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+application/config/*
+<<<<<<< HEAD
+application/application2/*
+=======
+>>>>>>> 764c0f8a3c3459a0e5f2ac5886e25bbe1740c4fa
+upload/*

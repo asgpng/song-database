@@ -1,0 +1,4 @@
+<p>
+Welcome to this worship music database website. (If you have an idea for a better title, feel free to submit suggestions!) The goal of this site is to provide a centralized location for us as PEF worship leaders to select songs, keep track of when and how often we do songs, and view and edit sheet music. 
+This is a work in progress, and you are the first testers. If you find any bugs, or if you have ideas for new features, <?php echo safe_mailto('asg4@princeton.edu', 'please let me know.'); ?>
+</p>

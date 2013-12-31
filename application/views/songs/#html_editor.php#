@@ -1,0 +1,18 @@
+<div class="cm-editor">
+  <!-- <form action="<?php echo site_url('music/edit_song'); ?>" method="POST" > -->
+  <form id="form_song_edit" name="edit" action="<?php echo site_url('music/edit_song/' . $song->id); ?>" method="POST" >
+    <textarea id="code" name="code">
+<?php echo $content ?>
+    </textarea>
+    <input type="hidden" name="song_id" id="song_id" value="<?php echo $song->id; ?>" >
+    <div class="cm-buttons">
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <!-- <a class="btn" type="submit" onclick="document.edit.submit(); return false;">Save</a> -->
+          <a class="btn" type="submit" onclick="song_edit();">Save</a>
+          <a class="btn" href="<?php echo '/songs/index.php/music/view_html/' . $song->id; ?>">View html</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
