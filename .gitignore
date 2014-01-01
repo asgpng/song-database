@@ -9,6 +9,8 @@ application/logs/*
 !application/logs/.htaccess
 
 asg4_songs*
+*.pyc
+tmp/*
 
 application/config/*
 <<<<<<< HEAD

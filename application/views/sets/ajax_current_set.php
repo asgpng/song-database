@@ -1,3 +1,30 @@
+<script>
+
+$(document).ready(function() {
+  // for removing a song from a set
+  $("img.remove").click(function(event) {
+    event.preventDefault();
+    // alert('button has been clicked');
+    var position = $(this).attr('value');
+    /* alert(value); */
+    var set_id = $("#set_id").val();
+    var query_params = "set_id=" + set_id + "&position=" + position;
+
+
+    $.post(base_url + '/sets/remove_from_set', query_params, function(theResponse) {
+      // alert(theResponse);
+        $("#current_set").html(theResponse);
+        updateSortable();
+    });
+    // update_order();
+    // alert(query_params);
+    $(this).parent().remove();
+
+  });
+})
+
+</script>
+
 Current Set
 <form id="form_current_set">
   <ul id="sortable">

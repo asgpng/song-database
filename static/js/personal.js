@@ -1,10 +1,9 @@
- #var base_url = '/~asg4/songs/index.php';
+var base_url = '/~asg4/songs/index.php';
 
 // editor windows after transpose
 $(document).ready(function() {
   // alert('test');
   $('#transpose_menu li').click(function(event) {
-    // alert('test');
     event.preventDefault();
     var action = $(this).text();
     var re = /.[0-9]/;
@@ -95,7 +94,9 @@ $(document).ready(function() {
     }
     return output;
   }
+})
 
+$(document).ready(function() {
   // for removing a song from a set
   $("img.remove").click(function(event) {
     event.preventDefault();
@@ -108,16 +109,17 @@ $(document).ready(function() {
 
     $.post(base_url + '/sets/remove_from_set', query_params, function(theResponse) {
       // alert(theResponse);
-      // $("#current_set").html(theResponse);
-
+        $("#current_set").html(theResponse);
+        updateSortable();
     });
     // update_order();
     // alert(query_params);
-    // updateSortable();
     $(this).parent().remove();
 
   });
+})
 
+$(document).ready(function() {
   // for adding a song to the set
   $('.song_submit_button').click(function(event) {
     event.preventDefault();
@@ -129,18 +131,19 @@ $(document).ready(function() {
     // alert(query_params);
     $.post(base_url + '/sets/add_to_set', query_params, function(theResponse) {
       // alert(theResponse);
-      // $("#current_set").html(theResponse);
+      $("#current_set").html(theResponse);
+updateSortable();
     });
     // var $li = $("<li class='ui-state-default'/>").text(song_name);
 
-    var $li = '<li class="ui-state-default" name="'
-      + song_count + '" id="' + song_id
-      + '"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="'
-      + base_url + '/music/codemirror/' + song_id + '">'
-      + song_name + '</a>'
-      + '<img value="' + song_count + '" class="remove" src="'
-      + '/~asg4/songs/static/img/glyphicons_free/glyphicons/png/glyphicons_207_remove_2.png' + '" height="10" width="10" >'
-      + '</li>';
+    // var $li = '<li class="ui-state-default" name="'
+    //   + song_count + '" id="' + song_id
+    //   + '"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="'
+    //   + base_url + '/music/codemirror/' + song_id + '">'
+    //   + song_name + '</a>'
+    //   + '<img value="' + song_count + '" class="remove" src="'
+    //   + '/~asg4/songs/static/img/glyphicons_free/glyphicons/png/glyphicons_207_remove_2.png' + '" height="10" width="10" >'
+    //   + '</li>';
 
     // name="<?php echo $count; ?>" id="<?php echo $song->song_id; ?>">
     //          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
@@ -150,8 +153,8 @@ $(document).ready(function() {
 
 
 
-    $("#sortable").append($li);
-    $("#sortable").sortable('refresh');
+    // $("#sortable").append($li);
+    // $("#sortable").sortable('refresh');
     // alert(query_params);
   });
 

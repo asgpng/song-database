@@ -82,7 +82,7 @@ class Sets extends CI_Controller {
       $song_id = $this->input->post($position);
       $this->set_songs->set_position($set_id, $song_id, $position + 1);
     }
-    redirect('sets/html_current_set/' . $set_id);
+    redirect('sets/ajax_current_set/' . $set_id);
   }
 
   public function add_to_set() {
@@ -93,16 +93,15 @@ class Sets extends CI_Controller {
     /* $data['set'] = $this->set->get_set($set_id);
     $data['current_songs'] = $this->set->get_current_songs($set_id);
 
-    $this->load->view('sets/current_set', $data); */
-    redirect('sets/html_current_set/' . $set_id);
+    $this->load->view('sets/ajax_current_set', $data); */
+    redirect('sets/ajax_current_set/' . $set_id);
   }
 
   /* a private function to display html for ajax update on current set */
-  public function html_current_set($set_id) {
+  public function ajax_current_set($set_id) {
     $data['set'] = $this->set->get_set($set_id);
     $data['current_songs'] = $this->set->get_current_songs($set_id);
-
-    $this->load->view('sets/current_set', $data);
+    $this->load->view('sets/ajax_current_set', $data);
   }
 
 
@@ -121,8 +120,8 @@ class Sets extends CI_Controller {
     $set_id = $this->input->post('set_id');
     $position = $this->input->post('position');
     $this->set_songs->remove_from_set($set_id, $position);
-    /* echo 'success'; */
-    redirect('sets/html_current_set/'.$set_id);
+     echo 'success';
+    redirect('sets/ajax_current_set/'.$set_id);
   }
 
 
